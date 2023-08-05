@@ -2,7 +2,7 @@
 {
     public class Program
     {
-        public static void Main(string[] theArgs)
+        public static void Main()
         {
             Console.WriteLine("Battleship v1");
 

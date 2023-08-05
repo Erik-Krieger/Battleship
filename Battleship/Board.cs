@@ -54,7 +54,7 @@ namespace Battleship
             }
 
             char aLetter = theTarget[0];
-            string aNumber = theTarget.Substring(1);
+            string aNumber = theTarget[1..];
 
             // Check if the first character is a letter.
             if (!char.IsLetter(aLetter))
@@ -110,6 +110,28 @@ namespace Battleship
             SetCell(anXPos, anYPos, 'm');
 
             return false;
+        }
+
+        /// <summary>
+        ///     This creates a List of all valid moves.
+        /// </summary>
+        /// <returns></returns>
+        public List<(int, int)> GetValidMoves()
+        {
+            List<(int, int)> aListOfMoves = new(m_Board.Length);
+
+            for (int anYPos = 0; anYPos < m_BoardSize; anYPos++)
+            {
+                for (int anXPos = 0; anXPos < m_BoardSize; anXPos++)
+                {
+                    if (m_Board[anXPos, anYPos] == 'w')
+                    {
+                        aListOfMoves.Add((anXPos, anYPos));
+                    }
+                }
+            }
+
+            return aListOfMoves;
         }
 
         private void MarkShipSunk(Ship theShip)
@@ -259,14 +281,16 @@ namespace Battleship
             m_Board[theXPos, theYPos] = theValue;
         }
 
+        /*
         private void SetCell(char theLetter, int theNumber, char theValue)
         {
             int anXPos = ConvertLetterToCellIndex(theLetter);
 
             SetCell(anXPos , theNumber, theValue);
         }
+        */
 
-        private int ConvertLetterToCellIndex(char theLetter)
+        private static int ConvertLetterToCellIndex(char theLetter)
         {
             if (!char.IsLetter(theLetter))
             {

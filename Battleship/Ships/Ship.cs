@@ -24,10 +24,10 @@ namespace Battleship.Ships
 
     internal abstract class Ship
     {
-        private ShipType m_Type;
-        private int m_Length;
+        private readonly ShipType m_Type;
+        private readonly int m_Length;
         private int m_HitCount;
-        private char m_LetterRepresentation;
+        private readonly char m_LetterRepresentation;
         private int m_XPos = -1;
         private int m_YPos = -1;
         private Orientation m_Orientation;
